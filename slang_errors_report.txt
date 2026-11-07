@@ -1,0 +1,187 @@
+============================================================
+BÁO CÁO LỖI FILE slang.txt  (ĐỒ ÁN #1 – SLANG WORD, CSC13002)
+============================================================
+Quy ước file : mỗi dòng = SLANG`MEANING  (dấu ` backtick ngăn cách)
+               nhiều nghĩa trong 1 dòng ngăn cách bằng dấu |
+Tổng số dòng : 7662  (dòng 1 là header + 7661 dòng dữ liệu)
+Encoding     : UTF-8, kết thúc dòng LF (không có CRLF, không có tab)
+
+Mức độ:  [A] Lỗi cấu trúc – làm hỏng việc parse   [B] Dữ liệu sai/thừa
+         [C] Lỗi nhỏ, nên chuẩn hoá               [D] Lỗi chính tả (nhiều khả năng là lỗi gốc của dataset)
+
+------------------------------------------------------------
+[A] LỖI CẤU TRÚC (QUAN TRỌNG NHẤT)
+------------------------------------------------------------
+A1. Dòng 1 – Header: "Slag`Meaning"
+    - Đây là dòng tiêu đề, KHÔNG phải slang word -> khi load phải bỏ qua.
+    - Có lỗi chính tả: "Slag" (đúng phải là "Slang").
+
+A2. 5 dòng THIẾU slang word và THIẾU dấu ` (split theo ` sẽ ra mảng 1 phần tử -> lỗi ArrayIndexOutOfBounds)
+    Dòng | Nội dung hiện tại                          | Khả năng đúng (suy ra từ thứ tự A-Z của dòng kế bên)
+    -----+--------------------------------------------+------------------------------------------------
+    413  | Against Medical Advice                     | AMA`Against Medical Advice
+    908  | Something really good                      | BOMB`Something really good
+    1112 | Cam for Cam                                | C4C`Cam for Cam
+    2004 | Indicating hesitation                      | ER`Indicating hesitation
+    2882 | Person wearing a hooded sweatshirt         | HOODIE`Person wearing a hooded sweatshirt
+    (Cột cuối là SUY ĐOÁN dựa vào dòng liền trước/sau: dòng 412 là AMA`Ask Me Anything,
+     dòng 907 là BOMB`Something really bad, dòng 1111 là C4C`Comment for Comment,
+     dòng 2003 là ER`Emergency Room, dòng 2881 là HOODIE`Hooded sweatshirt.)
+
+A3. 2 dòng cuối có key là ký tự non-ASCII (đây là 4 byte non-ASCII duy nhất trong cả file):
+    7661 : "Æ`Registered Trademark Symbol"  -> key đúng phải là ký hiệu ® (lỗi encoding)
+    7662 : "ô`Trademark"                    -> key đúng phải là ký hiệu ™ (lỗi encoding)
+
+------------------------------------------------------------
+[B] DÒNG TRÙNG LẶP / DỮ LIỆU THỪA
+------------------------------------------------------------
+B1. Hai dòng GIỐNG HỆT nhau nằm liền kề (dòng thứ 2 là thừa):
+    567-568   AWS`As We Speak
+    1214-1215 CHEESE`Drug| starter heroin| Money
+    2183-2184 FLAGGED`Banned
+    4441-4442 NAE`No
+    5087-5088 PBUH`Peace Be Upon Him
+    6055-6056 SOWIE`Sorry
+    6378-6379 TEOTWAWKI`The End Of The World As We Know It
+    7336-7337 WUWU`What's Up With You?
+
+B2. Cặp dòng bị CHÈN LẶP LẠI (lặp cả khối 2 dòng, dòng chèn thêm nằm sai thứ tự A-Z):
+    3468-3469 (JGI, JGL)  bị lặp lại ở  3470-3471
+    4117-4118 (MCR, MD)   bị lặp lại ở  4119-4120   (dòng 4119 còn có khoảng trắng đầu: " MCR")
+    5409-5410 (PYP, PYT)  bị lặp lại ở  5411-5412
+
+B3. Cùng key xuất hiện 2 lần ở vị trí xa nhau:
+    GOAT`Greatest Of All Time  -> dòng 2344 và dòng 2522 (dòng 2522 nằm sai chỗ trong dãy GN.. / GO..)
+    (Ngoài ra dòng 2343 "G O A T" có cùng nghĩa với GOAT – có thể là dữ liệu gốc.)
+
+B4. Cùng key, NGHĨA KHÁC NHAU, nằm ở dòng riêng (không phải lỗi, nhưng chương trình phải xử lý
+    1 key -> nhiều definition, đúng với yêu cầu add/duplicate trong đề):
+    HB  : dòng 2737 (Hug Back)    / 2738 (Hurry Back)
+    HH  : dòng 2799 (Ha-Ha)       / 2800 (Holding Hands)
+    OTW : dòng 5001 (On The Way)  / 5002 (On The Whole)
+    => Cùng kiểu với 5 dòng ở A2 (AMA, BOMB, C4C, ER, HOODIE): file biểu diễn nhiều nghĩa
+       bằng cách lặp lại key trên nhiều dòng.
+
+------------------------------------------------------------
+[C] LỖI NHỎ – KHOẢNG TRẮNG THỪA / ĐỊNH DẠNG (nên trim khi load)
+------------------------------------------------------------
+C1. Slang KEY có khoảng trắng thừa (sẽ làm tìm kiếm "BW" không ra "BW "):
+    1080 'BW '        2755 'HD '        2825 ' HK' (space đầu)   2941 'HUNNED '
+    4104 'MBFAM '     4119 ' MCR' (space đầu)   4388 'MW2 '       4911 'ONG '
+    6194 'SWAGG '     6222 'SWND '      6425 'THANQ '            6443 'THT '
+    6784 'UBER '      7061 'WCB '
+
+C2. MEANING có khoảng trắng thừa ở cuối:
+    162 (8-)  'Cool '            163 (8-|) 'Nerdy '
+    1089 (BWW) 'Buffalo Wild Wings '     1160 (CBR) 'Captive Bead Ring '
+    1448 (CULO) 'Ass '           2564 (GPC) '...Get/Post/Cookie '
+    3028 (ICC) 'Ice Crown Citadel '      3921 (LOOT) 'Money '
+    5289 (POTW) 'Patient of the Week '
+
+C3. Dấu | ngăn cách nghĩa KHÔNG đồng nhất (chuẩn của file là "| " = dấu | rồi 1 khoảng trắng):
+    13   >3    'Evil but happy|Hate'              (thiếu space sau |)
+    65   +1    'Partner |Me too'                  (space trước, thiếu space sau)
+    83   /:)   'Flirtation |Sign Of Suspicion'    (space trước, thiếu space sau)
+    353  AI    'Artificial Intelligence|As If'    (thiếu space sau |)
+    1137 CAPS  'Bullets|Mushrooms'                (thiếu space sau |)
+    1989 EOT   'End Of Thread |end of discussion' (space trước, thiếu space sau)
+    2295 FTC   'Favorite|Thumbs up| Comment'      (thiếu space sau | thứ nhất)
+    3442 JCB   'J C Bamford | excavator manufacturer' (space trước |)
+    3742 LATE  '...possibly pregnant|Dead'        (thiếu space sau |)
+    5349 PSI   '...(pressure)|Greek letter'       (thiếu space sau |)
+    6040 SOOC  'Straight Out Of Camera |not Photoshopped' (space trước, thiếu space sau)
+
+C4. Key chứa ký tự HTML entity (hiển thị sai):
+    7  : "&APOS;S`Wrongly displayed 's"   (nghĩa là 's bị hiển thị sai – dữ liệu gốc)
+    22 : "&HEARTS;`HTML code for a heart"
+
+C5. Key có chứa chính dấu | (hợp lệ nhưng cẩn thận nếu split theo | ở phần KEY):
+    163 '8-|'   169 '8|'   180 ':(|)'   213 ':|'   7658 '|O|'
+
+C6. Meaning bị CẮT CỤT (mất phần cuối chuỗi):
+    1958 ELNS`Eller noe s              (thiếu phần sau)
+    2308 FTSE`...London Stock Exchang  (thiếu chữ 'e')
+    2500 GMBH`Gesellschaft mit Beschr  (thiếu '...änkter Haftung')
+    3185 ILM`I lige m                  (thiếu phần cuối)
+
+C7. Sai thứ tự A-Z (file sắp xếp theo key; các vị trí sau bị đảo):
+    3805-3806 : LGBTQ đứng trước LGBT       (đúng: LGBT rồi LGBTQ)
+    3867-3868 : LMAP đứng trước LMAO        (đúng: LMAO rồi LMAP)
+    (Các đảo thứ tự khác chỉ xảy ra ở key toàn ký hiệu/số ở đầu file và ở dòng
+     1911 E&OE, 2345 G'DAY, 2977 I'MA – do cách xếp ký tự đặc biệt, không phải lỗi rõ ràng.)
+
+------------------------------------------------------------
+[D] LỖI CHÍNH TẢ TRONG PHẦN MEANING  (dòng | key | sai -> đúng)
+    Lưu ý: dataset slang gốc vốn có nhiều lỗi chính tả như này; thầy có thể không tính.
+------------------------------------------------------------
+254  A7A        Frusration      -> Frustration
+342  AGGY       Aggitated       -> Agitated
+354  AIB        Boverd          -> Bored
+362  AIM        Messanger       -> Messenger
+363  AIMBOT     Trageting       -> Targeting
+416  AMC        Corportation    -> Corporation
+555  AVO        Afternooon      -> Afternoon
+644  BANGING    beautifu        -> beautiful
+712  BEANS      Ecstacy         -> Ecstasy
+724  BELLIG     Belligerant     -> Belligerent
+817  BLATES     Blatently       -> Blatantly
+1034 BUB        Champange       -> Champagne
+1128 CAMO       Camoflauge      -> Camouflage
+1393 CRC        Redundency      -> Redundancy
+1458 CUTE       attrative       -> attractive
+1503 D:         Suprised        -> Surprised
+1550 DCED       Dissconected    -> Disconnected
+1924 ECO        Enconomical     -> Economical
+2011 ESB        Stikes          -> Strikes
+2167 FIT        lokking         -> looking
+2203 FM         Freqeuncy       -> Frequency
+2233 FOFO       Fourty          -> Forty
+2269 FRESHIE    Imigrant        -> Immigrant
+2324 FWD        Foward          -> Forward
+2399 GC         Contition       -> Condition
+2553 GOSH       suprise         -> surprise
+2885 HOOPS      Basketabll      -> Basketball
+3779 LED        Emiting         -> Emitting
+3996 LUI        Infuence        -> Influence
+4116 MCP        Chauvanist      -> Chauvinist
+4300 MPAA       Assosciation    -> Association
+4653 NOLA       Louisana        -> Louisiana
+4838 OEM        Manufacurer     -> Manufacturer
+4923 OO         Suprised        -> Surprised
+5148 PFT        exlamation      -> exclamation
+5159 PHD        Philosphy       -> Philosophy
+5282 POT        Mariujana       -> Marijuana
+5284 POTC       Carribean       -> Caribbean
+5292 POW        Prisioner       -> Prisoner
+5344 PSA        Publice         -> Public
+5404 PWOR       Recieved        -> Received
+5437 QOS        Quantam         -> Quantum
+5503 RCT        Coster          -> Coaster
+5776 SCO        Fransisco       -> Francisco
+5927 SKITZ      Schitzophrenic  -> Schizophrenic
+6038 SONAR      Navagation      -> Navigation
+6063 SPAM       Unsolicted      -> Unsolicited
+6080 SPLIF      cannibis        -> cannabis
+6085 SPOILER    prefered        -> preferred
+6293 TARDIS     Dimentions      -> Dimensions
+6345 TCOB       Buisness        -> Business
+6360 TDS        Dificulties     -> Difficulties
+6434 THIZZLE    Esctasy         -> Ecstasy
+6656 TT         Telegrahic      -> Telegraphic
+6975 VVV        Refering        -> Referring
+6996 WACK       quailty         -> quality
+7216 WOB        Bandwith        -> Bandwidth
+7393 X)         mischevious     -> mischievous
+7400 XC         Counrty         -> Country
+7630 ZIP        marijauna       -> marijuana
+(Bỏ qua có chủ ý: 5618 ROR "Raughing out Roud" và 6233 SWY "Sowwy" – cố tình viết sai kiểu slang.)
+
+------------------------------------------------------------
+GỢI Ý KHI CODE LOADER
+------------------------------------------------------------
+1. Bỏ qua dòng 1 (header).
+2. Với mỗi dòng: nếu không chứa ` thì ghi log + bỏ qua (hoặc gán vào key của dòng liền trước theo A2).
+3. trim() cả key lẫn từng definition; split meaning bằng "\\|" rồi trim từng phần.
+4. Dùng Map<String, List<String>> (ví dụ HashMap/TreeMap) để 1 key giữ được nhiều definition
+   (HB, HH, OTW, AMA...). Tránh List thuần vì đề trừ còn tối đa 70đ.
+5. Đọc file bằng UTF-8 tường minh (StandardCharsets.UTF_8) để không vỡ ký tự ở dòng 7661-7662.

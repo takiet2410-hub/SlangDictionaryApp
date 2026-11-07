@@ -1,4 +1,4 @@
-Slag`Meaning
+Slang`Meaning
 #1`Number one
 $`Dollar| money
 $_$`Has money
@@ -2298,7 +2298,7 @@ FTLOG`For The Love Of God
 FTM`Female To Male
 FTP`File Transfer Protocol
 FTR`For The Record
-FTSE`Financial Times and the London Stock Exchang
+FTSE`Financial Times and the London Stock Exchange
 FTSK`Forever The Sickest Kids (Band)
 FTTB`For The Time Being
 FTUW`For The Ultimate Win
@@ -3789,8 +3789,8 @@ LFTI`Looking Forward To It
 LFTSU`Look Forward To Seeing You
 LFW`Looking For Work
 LG`Little Girl
-LGBTQ`Lesbian, Gay, Bisexual, Transexual, Questioning
 LGBT`Lesbian, Gay, Bisexual, Transexual
+LGBTQ`Lesbian, Gay, Bisexual, Transexual, Questioning
 LGD`Let's Get Drunk
 LGFB`Looks Good From Behind
 LGMH`Love Gives Me Hope
@@ -3851,8 +3851,8 @@ LM`Loud Mouth
 LMA`Leave Me Alone
 LMAD`Let's Make A Deal
 LMAM`Leave Me A Message
-LMAP`Leave Me Alone Please
 LMAO`Laughing my ass off
+LMAP`Leave Me Alone Please
 LMC`Let Me Check| Let Me See
 LMCO`Laughing My Cats Off
 LMG`Light Machine Gun
@@ -7635,5 +7635,5 @@ ZZZ`Sleepy| bored| tired
 |O|`LOL
 }:-)`Devilish smile
 ~`Denotes Sarcasm| Put At The End Of A Word To Make It Longer
-Æ`Registered Trademark Symbol
-ô`Trademark
+®`Registered Trademark Symbol
+™`Trademark
