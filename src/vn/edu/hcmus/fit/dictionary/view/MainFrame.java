@@ -168,7 +168,7 @@ public class MainFrame extends JFrame implements DictionaryModelListener {
         lblStatusWords.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         lblStatusWords.setForeground(new Color(60, 70, 80));
 
-        JLabel lblRequirement = new JLabel("Thời gian tìm kiếm: < 1.0s (Thực tế: < 10ms)  ✓");
+        JLabel lblRequirement = new JLabel("Thời gian tìm kiếm: < 1.0s (Thực tế: < 10ms)");
         lblRequirement.setFont(new Font("Segoe UI", Font.BOLD, 12));
         lblRequirement.setForeground(new Color(33, 115, 70));
 

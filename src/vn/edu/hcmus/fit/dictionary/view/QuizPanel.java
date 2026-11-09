@@ -4,6 +4,7 @@ import vn.edu.hcmus.fit.dictionary.controller.QuizController;
 import vn.edu.hcmus.fit.dictionary.model.entity.QuizAnswerResult;
 import vn.edu.hcmus.fit.dictionary.model.entity.QuizQuestion;
 import vn.edu.hcmus.fit.dictionary.model.entity.QuizType;
+import vn.edu.hcmus.fit.dictionary.view.component.ModernButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,8 +25,8 @@ public class QuizPanel extends JPanel {
     private JLabel lblQuestionTitle;
     private JButton[] btnOptions;
     private JLabel lblFeedback;
-    private JButton btnNext;
-    private JButton btnResetGame;
+    private ModernButton btnNext;
+    private ModernButton btnResetGame;
 
     // Bảng điểm (Scorecard)
     private JLabel lblScore;
@@ -79,11 +80,11 @@ public class QuizPanel extends JPanel {
         lblScore.setFont(new Font("Segoe UI", Font.BOLD, 14));
         lblScore.setForeground(new Color(33, 115, 70));
 
-        lblStreak = new JLabel("Chuỗi hiện tại: 0 🔥", SwingConstants.CENTER);
+        lblStreak = new JLabel("Chuỗi hiện tại: 0", SwingConstants.CENTER);
         lblStreak.setFont(new Font("Segoe UI", Font.BOLD, 14));
         lblStreak.setForeground(new Color(230, 126, 34));
 
-        lblBestStreak = new JLabel("Kỷ lục chuỗi: 0 🏆", SwingConstants.CENTER);
+        lblBestStreak = new JLabel("Kỷ lục chuỗi: 0", SwingConstants.CENTER);
         lblBestStreak.setFont(new Font("Segoe UI", Font.BOLD, 14));
         lblBestStreak.setForeground(new Color(142, 68, 173));
 
@@ -161,7 +162,9 @@ public class QuizPanel extends JPanel {
         JPanel btnActions = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 6));
         btnActions.setOpaque(false);
 
-        btnNext = new JButton("➡️ Câu hỏi tiếp theo");
+        btnNext = new ModernButton("➡️ Câu hỏi tiếp theo",
+                new Color(5, 150, 105), new Color(16, 185, 129), new Color(4, 120, 87),
+                Color.WHITE, Color.WHITE);
         btnNext.setFont(new Font("Segoe UI", Font.BOLD, 13));
         btnNext.setBackground(new Color(33, 115, 70));
         btnNext.setForeground(Color.WHITE);
@@ -170,7 +173,15 @@ public class QuizPanel extends JPanel {
         btnNext.setFocusPainted(false);
         btnNext.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
-        btnResetGame = new JButton("🔄 Chơi lại từ đầu");
+//        ModernButton btnNext = new ModernButton("🎲 Lấy một từ ngẫu nhiên khác",
+//                new Color(5, 150, 105), new Color(16, 185, 129), new Color(4, 120, 87),
+//                Color.WHITE, Color.WHITE);
+//        btnNext.setFont(new Font("Segoe UI", Font.BOLD, 14));
+//        btnNext.setPreferredSize(new Dimension(250, 42));
+
+        btnResetGame = new ModernButton("🔄 Chơi lại từ đầu",
+                new Color(153, 27, 27), new Color(185, 28, 28), new Color(127, 29, 29),
+                new Color(254, 226, 226), Color.WHITE);
         btnResetGame.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         btnResetGame.setPreferredSize(new Dimension(160, 40));
         btnResetGame.setFocusPainted(false);
@@ -261,10 +272,10 @@ public class QuizPanel extends JPanel {
                     BorderFactory.createLineBorder(new Color(231, 76, 60), 3, true),
                     BorderFactory.createEmptyBorder(12, 16, 12, 16)
             ));
-            lblFeedback.setText("❌ " + result.getFeedbackMessage());
+            lblFeedback.setText(result.getFeedbackMessage());
             lblFeedback.setForeground(new Color(192, 57, 43));
         } else {
-            lblFeedback.setText("🎉 " + result.getFeedbackMessage());
+            lblFeedback.setText(result.getFeedbackMessage());
             lblFeedback.setForeground(new Color(33, 115, 70));
         }
 
@@ -275,8 +286,8 @@ public class QuizPanel extends JPanel {
 
     private void updateScorecard() {
         lblScore.setText(String.format("Điểm: %d / %d", controller.getScore(), controller.getTotalAnswered()));
-        lblStreak.setText(String.format("Chuỗi hiện tại: %d 🔥", controller.getCurrentStreak()));
-        lblBestStreak.setText(String.format("Kỷ lục chuỗi: %d 🏆", controller.getBestStreak()));
+        lblStreak.setText(String.format("Chuỗi hiện tại: %d ", controller.getCurrentStreak()));
+        lblBestStreak.setText(String.format("Kỷ lục chuỗi: %d ", controller.getBestStreak()));
         lblAccuracy.setText(String.format("Độ chính xác: %.1f%%", controller.getAccuracyPercentage()));
     }
 }

@@ -5,15 +5,40 @@ $_$`Has money
 %)`Drunk| giddy
 &`And
 &APOS;S`Wrongly displayed 's
+><`Frustration
+>,<`Angry| annoyed
+>.>`Suspicious| wary
+>.<`Frustrated| angry| upset| in pain
+>//<`Embarrassed| blushing
+>3`Evil but happy| Hate
+>:(`Angry
+>:)`Evil Grin
+>:D`Scheming| Maniacal
+>:D<`Hug
+>:O`Angry
+>O<`Yelling
+>_>`Looking left| shifty look
+>_<`Frustrated
 &HEARTS;`HTML code for a heart
+<#`Misspelling of <3
+<>`Not equal| No comment
+<><`Fish
+<.<`Shifty look
+</3`Broken Hearted
+<2`Not quite love (<3)
+<3`Love (heart shape)
+<333`Multiple hearts
+<3U`Love You
+<4`More than love (<3)
+<B`Hate
+<G>`Grin
+<_<`Sarcasm| look left
 'EM`Them
 (!)`Sarcasm
 ('_')`Emoticon Representing Boredom
 (.)(.)`Female Breasts
 (8)`Musical note (MSN)
 (:`Happy
-(^^^)`Shark
-(_8^(I)`Homer Simpson
 (A)`Angel (MSN)
 (H)`Cool dude emoticon (MSN)
 (K)`Kiss (MSN)
@@ -23,28 +48,27 @@ $_$`Has money
 (U)`Heartbroken
 (Y)`Thumbs up (MSN)
 (YN)`Fingers crossed (MSN)
+(^^^)`Shark
+(_8^(I)`Homer Simpson
 ({)(})`Two People Hugging
 *`Indicating a spelling correction
 *$`Starbucks
 *$$`Starbucks
-*.*`Every file on a computer
 *<:-)`Clown
-*\O/*`Cheerleader
-*_*`In love| dazed
+*.*`Every file on a computer
 *G*`Grin
 *HUG*`A Cyberhug
 *O*`Confused| surprised| shocked
 *S*`Salute
+*\O/*`Cheerleader
+*_*`In love| dazed
 +1`Partner| Me too
-+_+`Dead man
 +REP`Boost reputation
++_+`Dead man
 -.-`Annoyance
 -_-`Annoyed| tired
 .-.`Sad| unhappy
 ...`Silence| A Trailing Thought
-.22`A handgun
-.44`.44 Magnum
-._.`Emoticon Representing Apathy
 .BIZ`Top level domain for business
 .CO`Alternative to .COM
 .COM`commerce
@@ -53,6 +77,7 @@ $_$`Has money
 .MIL`military
 .NET`network providers
 .ORG`non-profit organizations
+._.`Emoticon Representing Apathy
 /.\`Shy| Ashamed
 //`Love| I love you
 /:)`Flirtation| Sign Of Suspicion
@@ -77,6 +102,7 @@ $_$`Has money
 1D`One Direction (band)
 1UP`Extra life in a game
 2`To
+.22`A handgun
 24/7`Twenty-four hours a day, seven days a week
 2B`To Be
 2BH`To Be Honest
@@ -99,13 +125,14 @@ $_$`Has money
 2NYT`Tonight
 2U`To You
 2U2`To You Too
-30STM`30 Seconds To Mars (band)
 3>`Hate
+30STM`30 Seconds To Mars (band)
 3DG`Three Days Grace (band)
 3G`Third Generation mobile phone network
 3Q`Thank You
 4/20`April 20th| WEED smoking day
 401K`Retirement investment plan
+.44`.44 Magnum
 4CHAN`Internet message/image board
 4COL`For Crying Out Loud
 4E4`Forever
@@ -140,10 +167,12 @@ $_$`Has money
 8BALL`1/8 ounce of cocaine
 8D`Manic
 8|`Balls To The Wall
-9_9`Rolling the eyes
 9JA`Nigeria
+9_9`Rolling the eyes
 :$`Embarrassed
 :&`Tongue tied| speechless
+:>`Mischievous smile
+:<`Sad| frowning
 :'(`Crying
 :')`Crying with joy
 :(`Unhappy| sad
@@ -160,13 +189,8 @@ $_$`Has money
 :0`Surprised| shocked
 :3`Cute| goofy face
 :9`Yum| licking
-:<`Sad| frowning
-:>`Mischievous smile
 :?`Confused
 :@`Angry
-:[`Sad| Vampire
-:\`Emoticon Meaning Confusion
-:]`Happy
 :B`Buck teeth
 :C`Very Sad
 :D`Happy
@@ -182,29 +206,19 @@ $_$`Has money
 :S`Confused
 :T`Side smile
 :X`Zipped lips
+:[`Sad| Vampire
+:\`Emoticon Meaning Confusion
+:]`Happy
 :{)`Happy with a moustache
 :|`Disgust| disapproval| not funny
 ;(`Crying
 ;)`Wink
 ;-)`Wink
 ;;`Sad| Confused
-;D`Wink
 ;O`Joking
+;D`Wink
 ;P`Winking and sticking tongue out
 ;P;`Misspelling of LOL
-<#`Misspelling of <3
-<.<`Shifty look
-</3`Broken Hearted
-<2`Not quite love (<3)
-<3`Love (heart shape)
-<333`Multiple hearts
-<3U`Love You
-<4`More than love (<3)
-<>`Not equal| No comment
-<><`Fish
-<_<`Sarcasm| look left
-<B`Hate
-<G>`Grin
 =`Equals| Complete Transformation
 =)`Happy
 =*`Kiss
@@ -212,8 +226,6 @@ $_$`Has money
 =/=`Not equal to
 =0`Surprised| shocked
 =3`Cute| goofy face
-=[`Sad
-=]`Happy
 =D`:D
 =F`Vampire
 =I`Indifference
@@ -221,20 +233,8 @@ $_$`Has money
 =S`Confused
 =W=`Weezer (band)
 =X`No Comment
->,<`Angry| annoyed
->.<`Frustrated| angry| upset| in pain
->.>`Suspicious| wary
->//<`Embarrassed| blushing
->3`Evil but happy| Hate
->:(`Angry
->:)`Evil Grin
->:D`Scheming| Maniacal
->:D<`Hug
->:O`Angry
-><`Frustration
->_<`Frustrated
->_>`Looking left| shifty look
->O<`Yelling
+=[`Sad
+=]`Happy
 ?4U`Question For You
 ??`What?
 ?_?`Confused| lost
@@ -243,21 +243,6 @@ $_$`Has money
 @@@`Warning of parents nearby
 @_@`Hypnotized| dazed
 @}--->----`A rose
-\\//`Peace| Vulcan salute
-\M/`Horns| metal salute
-\O`Waving
-\O/`Happy| arms in the air
-^`Refer To The Above Posted In The Chat
-^.^`Happy
-^.~`Wink
-^5`High five
-^^`Happy
-^^^`Reference to line above
-^_^`Happiness| satisfied
-^_~`Wink
-^O^`Hurrah
-^W^`Happy
-^~^`Mischievous Smile
 A&E`Accident & Emergency
 A&F`Always And Forever| Abercrombie & Fitch
 A&R`Artists & Repertoire
@@ -1152,7 +1137,6 @@ CARDY`Cardigan
 CARE`I don't care
 CARPE`Vomit| throw up
 CARRIED`Told off| DISSed
-Cartoon`Cát Tường| Người Yêu Kiệt
 CARTY`Party in a car
 CAS`Close Air Support| Confidence, Appearance, Swagger| Creativity, Action, Service
 CASJ`Casual
@@ -1918,12 +1902,11 @@ DYS`Do You See?
 DYT`Don't You Think?
 DZ`Drop Zone
 E`Ecstasy
+E>`<3
 E&OE`Errors and omissions excluded
 E-DATING`Online dating
 E1`Everyone
 E2EG`Ear To Ear Grin
-E>`<3
-E_E`Tired| exhausted
 EA`Electronic Arts
 EAS`End of Active Service
 EB`Eyeball
@@ -2066,6 +2049,7 @@ EYEBALL`Look at| Estimate measurement by looking
 EYO`Hey, you
 EZ`Easy
 EZPZ`Easy peasy| very easy
+E_E`Tired| exhausted
 F1`Formula One
 F2F`Face To Face
 F2P`Free To Play| Files To Peers
@@ -2350,6 +2334,7 @@ FYR`For Your Review| For Your Records
 FYT`For Your Time
 G`Grin
 G O A T`Greatest Of All Time
+GOAT`Greatest Of All Time
 G'DAY`Good Day, hello
 G1`Good One| Gone
 G2B`Go To Bed
@@ -2527,7 +2512,6 @@ GNR`Guns 'N Roses
 GNSD`Good Night, Sweet Dreams
 GNSTDLTBBB`Good Night Sleep Tight Don't Let the Bed Bugs Bite
 GNU`GNU's Not Unix| Linux OS
-GOAT`Greatest Of All Time
 GOB`Mouth
 GOBLIN`Gangster
 GOD SPEED`Good luck
@@ -2978,11 +2962,11 @@ HYS`Have Your Say
 HYU`Hit You Up
 HYUK`Lose| despite having a good lead
 HZ`Hertz
+I<3U`I Love You
 I'MA`I am going to
 I/O`Input/Output
 I18N`Internationalization
 I8`Aight| aite| alright
-I<3U`I Love You
 IA`I Agree
 IAB`I Am Bored
 IABW`In A Bad Way
@@ -4797,7 +4781,6 @@ O/\O`High five
 O7`Salute
 O:)`Innocent| angelic
 O:-)`Innocent| angelic
-O_O`Confused
 OA`Over Acting| Over Achiever
 OAN`On Another Note
 OAO`Over And Out
@@ -5030,6 +5013,7 @@ OYE`Listen up
 OYG`Oh Your God
 OYO`On Your Own
 OZ`Australia| Ounce
+O_O`Confused
 P`Penny| pence
 P!ATD`Panic! At The Disco (band)
 P&C`Point and Click
@@ -5710,7 +5694,6 @@ S2R`Send To Receive
 S2S`Sorry To Say| Safe To Say
 S2U`Same To You
 S4S`Support For Support
-S^`What's Up
 SA`Sibling Alert
 SAB`Smoking A Blunt
 SACK`Bed
@@ -6250,6 +6233,7 @@ SYSOP`System Operator
 SYT`See You Tomorrow| See You There
 SYTYCD`So You Think You Can Dance
 SYWISY`See You When I See You
+S^`What's Up
 T-T`Crying
 T.T`Crying
 T2M`Talk To Me
@@ -6258,8 +6242,6 @@ T2UL`Talk To You Later
 T2YL`Talk To You Later
 T4P`Thanks For Posting
 T4T`Tit For Tat| Thanks For Trade
-T^T`Crying
-T_T`Crying
 TA`Thank you
 TAB`Acid| LSD| Cigarette
 TABOO`Forbidden| not talked about
@@ -6651,7 +6633,6 @@ TSTL`Too Stupid To Live
 TSUP`SUP
 TT`Telegrahic Transfer| Till tomorrow
 TT4N`Ta Ta For Now
-TT_TT`Crying
 TTBOMK`To The Best Of My Knowledge
 TTC`Trying To Conceive
 TTD`Textually Transmitted Disease
@@ -6696,6 +6677,7 @@ TTYS`Talk To You Soon
 TTYT`Talk To You Tomorrow
 TTYTT`To Tell You The Truth
 TTYVS`Talk To You Very Soon
+TT_TT`Crying
 TUDE`Bad attitude
 TUFF`Rugged
 TUL`Tell You Later| Text You Later
@@ -6759,6 +6741,8 @@ TYSM`Thank You So Much
 TYSVM`Thank You So Very Much
 TYT`Take Your Time
 TYVM`Thank You Very Much
+T^T`Crying
+T_T`Crying
 U`You
 U.O.E.N.O`You Don't Even Know
 U.U`Expressing sympathy
@@ -6982,7 +6966,6 @@ W4M`Woman looking for a man
 W8`Wait
 W8AM`Wait A Minute
 W@`What
-W^`What's up
 WA`Wife Agro
 WA GWAN`What's Going On
 WAA`Crying
@@ -7382,12 +7365,11 @@ WYUT`What You Up To
 WYW`Whatever You Want
 WYWH`Wish You Were Here
 WYWTA`What You Wanna Talk About
+W^`What's up
 X`Kiss
 X)`Happy| mischevious
 X.X`Exasperated| irritated| annoyed
 X3`Cute face
-X]`Happy
-X_X`Dead
 XAXA`Ha Ha
 XB`XBox
 XBF`Ex-Boyfriend
@@ -7416,6 +7398,8 @@ XVX`Straightedge Vegetarian| Straightedge Vegan
 XX`Kisses
 XXX`Kisses
 XYZ`Examine Your Zipper
+X]`Happy
+X_X`Dead
 Y`Why?
 Y/N`Yes/No
 Y/O`Year(s) Old
@@ -7633,6 +7617,21 @@ ZTA`Zeta Tau Alpha
 ZUP`What's up?
 ZUT`Damn it
 ZZZ`Sleepy| bored| tired
+\M/`Horns| metal salute
+\O`Waving
+\O/`Happy| arms in the air
+\\//`Peace| Vulcan salute
+^`Refer To The Above Posted In The Chat
+^.^`Happy
+^.~`Wink
+^5`High five
+^O^`Hurrah
+^W^`Happy
+^^`Happy
+^^^`Reference to line above
+^_^`Happiness| satisfied
+^_~`Wink
+^~^`Mischievous Smile
 |O|`LOL
 }:-)`Devilish smile
 ~`Denotes Sarcasm| Put At The End Of A Word To Make It Longer

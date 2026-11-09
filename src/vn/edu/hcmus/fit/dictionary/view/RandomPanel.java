@@ -40,7 +40,7 @@ public class RandomPanel extends JPanel {
         JPanel headerPanel = new JPanel(new GridLayout(2, 1, 4, 4));
         headerPanel.setOpaque(false);
 
-        JLabel lblTitle = new JLabel("✨ ON THIS DAY SLANG WORD ✨", SwingConstants.CENTER);
+        JLabel lblTitle = new JLabel("ON THIS DAY SLANG WORD", SwingConstants.CENTER);
         lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 22));
         lblTitle.setForeground(new Color(20, 50, 90));
 
