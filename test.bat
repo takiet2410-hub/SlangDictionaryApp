@@ -1,40 +1,39 @@
 @echo off
-chcp 65001 > nul
 echo ====================================================================
-echo             CHẠY TOÀN BỘ BỘ KIỂM THỬ TỰ ĐỘNG VÀ BENCHMARK
+echo             RUNNING ALL AUTOMATED TESTS AND BENCHMARK
 echo ====================================================================
 
 if not exist out (
-    echo [INFO] Đang biên dịch mã nguồn và kiểm thử...
+    echo [INFO] Compiling source code and tests...
     call build.bat
 )
 
 echo.
 echo ====================================================================
-echo [MILESTONE 2 TEST] TẦNG MODEL & INDEX ENGINE
+echo [MILESTONE 2 TEST] MODEL AND INDEX ENGINE
 echo ====================================================================
 java -ea -Dfile.encoding=UTF-8 -cp out test.Milestone2Test
 
 echo.
 echo ====================================================================
-echo [MILESTONE 3 TEST] TẦNG CONTROLLER & NGHIỆP VỤ
+echo [MILESTONE 3 TEST] CONTROLLER AND BUSINESS LOGIC
 echo ====================================================================
 java -ea -Dfile.encoding=UTF-8 -cp out test.Milestone3Test
 
 echo.
 echo ====================================================================
-echo [MILESTONE 4 TEST] TẦNG VIEW SWING
+echo [MILESTONE 4 TEST] SWING VIEW LAYER
 echo ====================================================================
 java -ea -Dfile.encoding=UTF-8 -cp out test.Milestone4Test
 
 echo.
 echo ====================================================================
-echo [MILESTONE 5 TEST] BENCHMARK 100.000 TỪ & PHỤC HỒI CACHE
+echo [MILESTONE 5 TEST] BENCHMARK 100,000 WORDS AND CACHE RECOVERY
 echo ====================================================================
 java -ea -Dfile.encoding=UTF-8 -cp out test.Milestone5Test
 
 echo.
 echo ====================================================================
-echo                HOÀN TẤT TOÀN BỘ KIỂM THỬ!
+echo                   ALL TESTS FINISHED!
 echo ====================================================================
 pause
