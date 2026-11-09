@@ -4,6 +4,7 @@ import vn.edu.hcmus.fit.dictionary.controller.DictionaryController;
 import vn.edu.hcmus.fit.dictionary.controller.DuplicateAction;
 import vn.edu.hcmus.fit.dictionary.model.entity.SlangEntry;
 import vn.edu.hcmus.fit.dictionary.model.event.DictionaryModelListener;
+import vn.edu.hcmus.fit.dictionary.view.component.ModernButton;
 import vn.edu.hcmus.fit.dictionary.view.component.SlangTableModel;
 
 import javax.swing.*;
@@ -51,29 +52,29 @@ public class ManagementPanel extends JPanel implements DictionaryModelListener {
 
         JPanel toolbar = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 4));
 
-        JButton btnAdd = new JButton("➕ Thêm từ mới");
+        ModernButton btnAdd = new ModernButton("➕ Thêm từ mới",
+                new Color(22, 163, 74), new Color(34, 197, 94), new Color(21, 128, 61),
+                Color.WHITE, Color.WHITE);
         btnAdd.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        btnAdd.setBackground(new Color(33, 115, 70));
-        btnAdd.setForeground(Color.WHITE);
-        btnAdd.setFocusPainted(false);
-        btnAdd.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnAdd.setPreferredSize(new Dimension(140, 36));
 
-        JButton btnEdit = new JButton("✏️ Chỉnh sửa");
-        btnEdit.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        btnEdit.setFocusPainted(false);
-        btnEdit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        ModernButton btnEdit = new ModernButton("✏️ Chỉnh sửa",
+                new Color(2, 132, 199), new Color(14, 165, 233), new Color(3, 105, 161),
+                Color.WHITE, Color.WHITE);
+        btnEdit.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        btnEdit.setPreferredSize(new Dimension(120, 36));
 
-        JButton btnDelete = new JButton("🗑️ Xóa");
-        btnDelete.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        btnDelete.setFocusPainted(false);
-        btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        ModernButton btnDelete = new ModernButton("🗑️ Xóa",
+                new Color(220, 38, 38), new Color(239, 68, 68), new Color(185, 28, 28),
+                Color.WHITE, Color.WHITE);
+        btnDelete.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        btnDelete.setPreferredSize(new Dimension(90, 36));
 
-        JButton btnReset = new JButton("🔄 Khôi phục gốc (Reset)");
+        ModernButton btnReset = new ModernButton("🔄 Khôi phục gốc (Reset)",
+                new Color(153, 27, 27), new Color(185, 28, 28), new Color(127, 29, 29),
+                new Color(254, 226, 226), Color.WHITE);
         btnReset.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        btnReset.setBackground(new Color(192, 57, 43));
-        btnReset.setForeground(Color.WHITE);
-        btnReset.setFocusPainted(false);
-        btnReset.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnReset.setPreferredSize(new Dimension(190, 36));
 
         toolbar.add(btnAdd);
         toolbar.add(btnEdit);

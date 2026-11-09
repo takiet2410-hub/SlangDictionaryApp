@@ -6,6 +6,7 @@ import vn.edu.hcmus.fit.dictionary.controller.QuizController;
 import vn.edu.hcmus.fit.dictionary.model.QuizModel;
 import vn.edu.hcmus.fit.dictionary.model.SlangDictionaryModel;
 import vn.edu.hcmus.fit.dictionary.model.event.DictionaryModelListener;
+import vn.edu.hcmus.fit.dictionary.view.component.ModernButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,7 +25,7 @@ public class MainFrame extends JFrame implements DictionaryModelListener {
 
     private CardLayout cardLayout;
     private JPanel contentCards;
-    private JButton[] navButtons;
+    private ModernButton[] navButtons;
     private JLabel lblStatusWords;
 
     private SearchPanel searchPanel;
@@ -88,17 +89,20 @@ public class MainFrame extends JFrame implements DictionaryModelListener {
                 "🎮  Đố vui (Quiz)"
         };
 
-        navButtons = new JButton[titles.length];
+        navButtons = new ModernButton[titles.length];
         for (int i = 0; i < titles.length; i++) {
             final int index = i;
-            JButton btn = new JButton(titles[i]);
-            btn.setFont(new Font("Segoe UI", Font.BOLD, 13));
-            btn.setHorizontalAlignment(SwingConstants.LEFT);
-            btn.setFocusPainted(false);
-            btn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            btn.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
-            btn.setBackground(i == 0 ? new Color(38, 60, 88) : new Color(24, 38, 56));
-            btn.setForeground(Color.WHITE);
+            ModernButton btn = new ModernButton(titles[i],
+                    new Color(32, 48, 72),      // Lúc chưa ấn: Nền Slate Navy rõ ràng, không chìm vào sidebar
+                    new Color(45, 68, 102),     // Rê chuột: Nền sáng nhẹ
+                    new Color(37, 99, 235),     // Lúc ấn/đang chọn: Nền Xanh Royal Blue nổi bật
+                    new Color(214, 230, 255),   // Chữ lúc chưa ấn: Xanh băng dịu mắt, tương phản cao, không trùng màu
+                    Color.WHITE,                // Chữ rê chuột: Trắng sáng
+                    Color.WHITE                 // Chữ lúc ấn: Trắng tinh khiết
+            );
+            btn.setSidebarNav(true);
+            btn.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
+            btn.setActive(i == 0);
 
             btn.addActionListener(e -> switchCard(cardNames[index], index));
             navButtons[i] = btn;
@@ -178,13 +182,7 @@ public class MainFrame extends JFrame implements DictionaryModelListener {
         cardLayout.show(contentCards, cardName);
 
         for (int i = 0; i < navButtons.length; i++) {
-            if (i == buttonIndex) {
-                navButtons[i].setBackground(new Color(38, 60, 88));
-                navButtons[i].setForeground(new Color(255, 255, 255));
-            } else {
-                navButtons[i].setBackground(new Color(24, 38, 56));
-                navButtons[i].setForeground(new Color(190, 205, 225));
-            }
+            navButtons[i].setActive(i == buttonIndex);
         }
     }
 

@@ -2,6 +2,7 @@ package vn.edu.hcmus.fit.dictionary.view;
 
 import vn.edu.hcmus.fit.dictionary.controller.DictionaryController;
 import vn.edu.hcmus.fit.dictionary.model.entity.SlangEntry;
+import vn.edu.hcmus.fit.dictionary.view.component.ModernButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -92,19 +93,17 @@ public class RandomPanel extends JPanel {
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
         bottomPanel.setOpaque(false);
 
-        JButton btnNext = new JButton("🎲 Lấy một từ ngẫu nhiên khác");
+        ModernButton btnNext = new ModernButton("🎲 Lấy một từ ngẫu nhiên khác",
+                new Color(5, 150, 105), new Color(16, 185, 129), new Color(4, 120, 87),
+                Color.WHITE, Color.WHITE);
         btnNext.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        btnNext.setBackground(new Color(33, 115, 70));
-        btnNext.setForeground(Color.WHITE);
-        btnNext.setPreferredSize(new Dimension(240, 42));
-        btnNext.setFocusPainted(false);
-        btnNext.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnNext.setPreferredSize(new Dimension(250, 42));
 
-        JButton btnSearchThis = new JButton("🔍 Tra cứu từ này");
-        btnSearchThis.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        btnSearchThis.setPreferredSize(new Dimension(170, 42));
-        btnSearchThis.setFocusPainted(false);
-        btnSearchThis.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        ModernButton btnSearchThis = new ModernButton("🔍 Tra cứu từ này",
+                new Color(37, 99, 235), new Color(59, 130, 246), new Color(29, 78, 216),
+                Color.WHITE, Color.WHITE);
+        btnSearchThis.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        btnSearchThis.setPreferredSize(new Dimension(180, 42));
 
         bottomPanel.add(btnNext);
         bottomPanel.add(btnSearchThis);

@@ -6,6 +6,7 @@ import vn.edu.hcmus.fit.dictionary.model.entity.SearchResult;
 import vn.edu.hcmus.fit.dictionary.model.entity.SearchType;
 import vn.edu.hcmus.fit.dictionary.model.entity.SlangEntry;
 import vn.edu.hcmus.fit.dictionary.view.component.AutocompletePopup;
+import vn.edu.hcmus.fit.dictionary.view.component.ModernButton;
 import vn.edu.hcmus.fit.dictionary.view.component.SlangTableModel;
 
 import javax.swing.*;
@@ -25,8 +26,8 @@ public class SearchPanel extends JPanel {
 
     private JComboBox<String> cmbSearchType;
     private JTextField txtSearch;
-    private JButton btnSearch;
-    private JButton btnClear;
+    private ModernButton btnSearch;
+    private ModernButton btnClear;
     private JLabel lblStatus;
     private JTable tblResults;
     private SlangTableModel tableModel;
@@ -81,25 +82,23 @@ public class SearchPanel extends JPanel {
         inputBar.add(txtSearch, gbc);
 
         // Nút Tìm kiếm
-        btnSearch = new JButton("Tìm kiếm");
-        btnSearch.setFont(new Font("Segoe UI", Font.BOLD, 13));
-        btnSearch.setBackground(new Color(33, 115, 70));
-        btnSearch.setForeground(Color.WHITE);
-        btnSearch.setFocusPainted(false);
-        btnSearch.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnSearch = new ModernButton("🔍 Tìm kiếm",
+                new Color(22, 163, 74), new Color(34, 197, 94), new Color(20, 83, 45),
+                Color.WHITE, Color.WHITE, new Color(187, 247, 208));
+        btnSearch.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
         gbc.gridx = 2;
         gbc.gridy = 0;
-        gbc.weightx = 0.1;
+        gbc.weightx = 0.12;
         inputBar.add(btnSearch, gbc);
 
         // Nút Xóa trắng
-        btnClear = new JButton("Xóa");
-        btnClear.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-        btnClear.setFocusPainted(false);
-        btnClear.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnClear = new ModernButton("Xóa",
+                new Color(100, 116, 139), new Color(148, 163, 184), new Color(71, 85, 105),
+                Color.WHITE, Color.WHITE, new Color(241, 245, 249));
+        btnClear.setFont(new Font(Font.DIALOG, Font.BOLD, 13));
         gbc.gridx = 3;
         gbc.gridy = 0;
-        gbc.weightx = 0.1;
+        gbc.weightx = 0.08;
         inputBar.add(btnClear, gbc);
 
         topPanel.add(inputBar, BorderLayout.CENTER);

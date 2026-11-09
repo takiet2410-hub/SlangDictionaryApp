@@ -4,6 +4,7 @@ import vn.edu.hcmus.fit.dictionary.controller.DictionaryController;
 import vn.edu.hcmus.fit.dictionary.model.entity.SearchHistoryEntry;
 import vn.edu.hcmus.fit.dictionary.model.entity.SearchType;
 import vn.edu.hcmus.fit.dictionary.model.event.DictionaryModelListener;
+import vn.edu.hcmus.fit.dictionary.view.component.ModernButton;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -52,21 +53,23 @@ public class HistoryPanel extends JPanel implements DictionaryModelListener {
 
         JPanel toolbar = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 4));
 
-        JButton btnResearch = new JButton("🔍 Tra cứu lại");
+        ModernButton btnResearch = new ModernButton("🔍 Tra cứu lại",
+                new Color(37, 99, 235), new Color(59, 130, 246), new Color(29, 78, 216),
+                Color.WHITE, Color.WHITE);
         btnResearch.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        btnResearch.setBackground(new Color(33, 115, 70));
-        btnResearch.setForeground(Color.WHITE);
-        btnResearch.setFocusPainted(false);
-        btnResearch.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnResearch.setPreferredSize(new Dimension(130, 36));
 
-        JButton btnClear = new JButton("🗑️ Xóa toàn bộ lịch sử");
-        btnClear.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        btnClear.setFocusPainted(false);
-        btnClear.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        ModernButton btnClear = new ModernButton("🗑️ Xóa toàn bộ lịch sử",
+                new Color(220, 38, 38), new Color(239, 68, 68), new Color(185, 28, 28),
+                Color.WHITE, Color.WHITE);
+        btnClear.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        btnClear.setPreferredSize(new Dimension(170, 36));
 
-        JButton btnRefresh = new JButton("🔄 Làm mới");
-        btnRefresh.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        btnRefresh.setFocusPainted(false);
+        ModernButton btnRefresh = new ModernButton("🔄 Làm mới",
+                new Color(100, 116, 139), new Color(148, 163, 184), new Color(71, 85, 105),
+                Color.WHITE, Color.WHITE);
+        btnRefresh.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        btnRefresh.setPreferredSize(new Dimension(110, 36));
 
         toolbar.add(btnResearch);
         toolbar.add(btnClear);
