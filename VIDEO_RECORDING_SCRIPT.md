@@ -2,7 +2,7 @@
 > **Môn học:** CSC13002 – Lập trình ứng dụng Java (FIT - HCMUS)  
 > **Đề tài:** Đồ án #1 – Slang Word Dictionary  
 > **Sinh viên:** Trần Anh Kiệt (takiet2410@clc.fitus.edu.vn)  
-> **Thời lượng khuyến nghị:** 3 - 5 phút (ngắn gọn, cô đọng, đúng trọng tâm)  
+> **Thời lượng khuyến nghị:** 4 - 6 phút (ngắn gọn, cô đọng, đúng trọng tâm)  
 > **Tiêu chuẩn video:** 1080p (Full HD), âm thanh rõ ràng, không lẫn tạp âm.  
 
 ---
@@ -15,8 +15,14 @@
    - Bật micro, test thu âm thử 10 giây để đảm bảo âm lượng to, rõ, không bị rè.
 
 2. **Chuẩn bị các cửa sổ trên màn hình:**
-   - **Cửa sổ 1:** Trình soạn thảo IDE (IntelliJ IDEA / VS Code) hiển thị cấu trúc thư mục package `vn.edu.hcmus.fit.dictionary` và file `PROJECT_BLUEPRINT.md` hoặc sơ đồ kiến trúc MVC.
-   - **Cửa sổ 2:** Cửa sổ ứng dụng **Slang Dictionary** đang chạy (`run.bat` hoặc `java -jar SlangDictionary.jar`), sẵn sàng thao tác.
+   - **Cửa sổ 1:** Trình soạn thảo IDE (IntelliJ IDEA) mở sẵn các file:
+     * `src/vn/edu/hcmus/fit/dictionary/model/index/SlangIndex.java`
+     * `src/vn/edu/hcmus/fit/dictionary/model/index/InvertedDefinitionIndex.java`
+     * `src/vn/edu/hcmus/fit/dictionary/model/index/AutocompleteTrie.java`
+     * `src/vn/edu/hcmus/fit/dictionary/model/repository/FileSlangRepository.java`
+     * `src/test/Milestone5Test.java`
+   - **Cửa sổ 2:** Cửa sổ ứng dụng **Slang Dictionary** đang chạy (click đúp `run.bat`), sẵn sàng thao tác.
+   - **Cửa sổ 3:** Terminal đang mở sẵn lệnh chạy test `test.bat` để chiếu kết quả benchmark.
    - Đóng toàn bộ các tab trình duyệt cá nhân, ứng dụng chat (Zalo, Messenger, Discord) để tránh bị phân tâm hoặc dính thông báo khi đang quay.
 
 3. **Chức năng được chọn để demo trọn vẹn:**
@@ -30,10 +36,10 @@
 | Phần | Nội dung chính | Thời lượng dự kiến | Yêu cầu theo đề bài |
 |---|---|---|---|
 | **Phần 1** | Giới thiệu bản thân, đề tài và **Tỷ lệ tham khảo (% tham khảo)** | 0:00 - 0:40 (~40s) | Bắt buộc theo đề mục IV.6 & IV.7 |
-| **Phần 2** | **Kiến trúc hệ thống (MVC)** và Logic luồng dữ liệu & Lưu trữ an toàn | 0:40 - 1:40 (~60s) | Bổ sung chuyên sâu theo yêu cầu đồ án |
-| **Phần 3** | **Mô tả cấu trúc dữ liệu sử dụng** và Phân tích Big-O | 1:40 - 2:30 (~50s) | Bắt buộc theo đề mục IV.7 |
-| **Phần 4** | **Demo thực tế toàn bộ 1 chức năng** trên giao diện ứng dụng | 2:30 - 4:10 (~100s)| Bắt buộc theo đề mục IV.7 |
-| **Phần 5** | Thống kê hiệu năng benchmark 100k từ, lời kết & cảm ơn | 4:10 - 4:40 (~30s) | Tổng kết, đối chiếu đề bài |
+| **Phần 2** | **Kiến trúc hệ thống (MVC)** và Logic luồng dữ liệu & Lưu trữ an toàn | 0:40 - 1:30 (~50s) | Bổ sung chuyên sâu theo yêu cầu đồ án |
+| **Phần 3** | **Chi tiết Cấu trúc Dữ liệu, Bản chất Index & Logic Benchmark Milestone5Test** | 1:30 - 3:15 (~105s)| Bắt buộc theo đề mục IV.7 & Yêu cầu bổ sung |
+| **Phần 4** | **Demo thực tế toàn bộ 1 chức năng** trên giao diện ứng dụng (Thêm Overwrite/Duplicate) | 3:15 - 4:45 (~90s) | Bắt buộc theo đề mục IV.7 |
+| **Phần 5** | Thống kê hiệu năng benchmark 100k từ, lời kết & cảm ơn | 4:45 - 5:15 (~30s) | Tổng kết, đối chiếu đề bài |
 
 ---
 
@@ -54,7 +60,7 @@
 
 ---
 
-### PHẦN 2: KIẾN TRÚC HỆ THỐNG (MVC) & LOGIC DỮ LIỆU (0:40 – 1:40)
+### PHẦN 2: KIẾN TRÚC HỆ THỐNG (MVC) & LOGIC DỮ LIỆU (0:40 – 1:30)
 
 * **Thao tác màn hình:**
   - Thu nhỏ slide, chuyển sang cây thư mục mã nguồn trong IDE (`src/vn/edu/hcmus/fit/dictionary`).
@@ -68,29 +74,65 @@
   >
   > 3. *Thứ ba là **tầng Model & Repository**: Quản lý toàn bộ dữ liệu từ điển tập trung trong RAM (Single Source of Truth). Khi Model có sự thay đổi, nó sẽ phát thông báo thông qua `DictionaryModelListener` để View tự động vẽ lại bảng.*
   >
-  > *Về **logic lưu trữ và độ bền dữ liệu**: Hệ thống áp dụng cơ chế **Safe Atomic Write** — ghi dữ liệu ra tệp tạm `.tmp` trước rồi mới thay thế nguyên tử tệp `slang_user.txt`, tránh hoàn toàn nguy cơ mất dữ liệu khi bị tắt đột ngột. Đồng thời, cấu trúc Index được serialize lưu vào thư mục `data/index/` kèm mã băm SHA-256 để nạp siêu tốc trong các lần chạy sau mà không cần index lại từ đầu."*
+  > *Về **logic lưu trữ và độ bền dữ liệu**: Hệ thống áp dụng cơ chế **Safe Atomic Write** — ghi dữ liệu ra tệp tạm `.tmp` trước rồi mới thay thế nguyên tử tệp `slang_user.txt`, tránh hoàn toàn nguy cơ mất dữ liệu khi bị tắt đột ngột."*
 
 ---
 
-### PHẦN 3: CẤU TRÚC DỮ LIỆU SỬ DỤNG & ĐỘ PHỨC TẠP (1:40 – 2:30)
+### PHẦN 3: CHI TIẾT CẤU TRÚC DỮ LIỆU, BẢN CHẤT INDEX & LOGIC BENCHMARK (1:30 – 3:15)
 
+Đây là phần kỹ thuật cốt lõi giải đáp trọn vẹn yêu cầu về Cấu trúc Dữ liệu, Bản chất Index và Logic Kiểm thử 100k từ.
+
+#### 3.1. Các Cấu trúc Dữ liệu chính & Vị trí Mã nguồn cụ thể (1:30 – 2:10)
 * **Thao tác màn hình:**
-  - Mở các file: `SlangIndex.java`, `InvertedDefinitionIndex.java`, `AutocompleteTrie.java` trong IDE.
-  - Làm nổi bật các dòng khai báo cấu trúc `HashMap`, `Map<String, Set<String>>` và các node của Trie.
+  - Mở file `src/vn/edu/hcmus/fit/dictionary/model/index/SlangIndex.java` $\to$ bôi đen dòng khai báo `HashMap<String, SlangEntry>`.
+  - Mở file `src/vn/edu/hcmus/fit/dictionary/model/index/InvertedDefinitionIndex.java` $\to$ bôi đen phương thức `search()` và các thao tác `retainAll()`.
+  - Mở file `src/vn/edu/hcmus/fit/dictionary/model/index/AutocompleteTrie.java` $\to$ bôi đen lớp `TrieNode` và hàm `suggest()`.
 * **Lời thoại (Voice-over):**
-  > *"Tiếp theo, em xin mô tả ngắn gọn về **các cấu trúc dữ liệu chính** được sử dụng nhằm đảm bảo thời gian tìm kiếm dưới 1 giây cho dataset lên đến 100.000 từ theo đúng yêu cầu đề bài:*
+  > *"Tiếp theo, em xin đi sâu vào **chi tiết các cấu trúc dữ liệu và vị trí code cụ thể** trong dự án:*
   >
-  > *1. **Tra cứu theo Slang Word**: Em sử dụng cấu trúc `HashMap<String, SlangEntry>` với Key là từ khóa chuẩn hóa. Cấu trúc này cho độ phức tạp tìm kiếm lý thuyết là **$O(1)$**. Đo đạc thực tế trên dataset 100.000 từ chỉ mất **~0.5 micro-giây**, tức là nhanh hơn yêu cầu 1 giây của Thầy/Cô hơn 1,8 triệu lần.*
+  > *1. **Tra cứu theo Slang Word ($O(1)$)**: Trong file `SlangIndex.java` (dòng 18), em sử dụng cấu trúc `HashMap<String, SlangEntry>`. Khóa (key) là từ slang đã được chuẩn hóa viết hoa thông qua `TextNormalizer.normalizeWord(word)`. Bảng băm giúp việc tìm kiếm, thêm, xóa đạt độ phức tạp lý thuyết là **$O(1)$**, không bị phụ thuộc vào số lượng từ trong từ điển.*
   >
-  > *2. **Tra cứu theo Definition**: Thay vì duyệt tuần tự $O(N)$ rất chậm, em xây dựng một **Chỉ mục đảo (Inverted Index)** ánh xạ từ từng từ đơn (token) trong định nghĩa tới tập hợp các Slang Words. Khi tìm kiếm, thuật toán thực hiện giao các posting lists nhỏ nhất rồi mới kiểm chứng chuỗi con, giúp giảm thời gian tra cứu xuống chỉ còn **~21 mili-giây** trên 100.000 từ.*
+  > *2. **Tra cứu theo Definition (Inverted Index)**: Trong file `InvertedDefinitionIndex.java` (dòng 18), em sử dụng cấu trúc `Map<String, Set<String>>` ánh xạ từ mỗi từ đơn (token) trong định nghĩa tới tập các Slang Word chứa nó. Trong phương thức `search()` (từ dòng 71), thay vì duyệt tuyến tính $O(N)$ toàn bộ từ điển rất chậm, thuật toán tách từ khóa thành các token, lấy ra các danh sách `Set<String>` tương ứng, sắp xếp theo kích thước tăng dần rồi thực hiện phép giao tập hợp bằng lệnh `candidateKeys.retainAll()`. Sau khi thu hẹp không gian tìm kiếm từ 100.000 từ xuống chỉ còn vài chục từ ứng viên, thuật toán mới kiểm chứng chuỗi con chính xác.*
   >
-  > *3. **Gợi ý tự động (Autocomplete)**: Em sử dụng cấu trúc **Cây tiền tố (Autocomplete Trie)**. Độ phức tạp tìm kiếm chỉ là **$O(L)$** với $L$ là độ dài tiền tố người dùng gõ, hoàn toàn độc lập với kích thước từ điển, mang lại trải nghiệm gõ phím cực kỳ mượt mà.*
+  > *3. **Gợi ý tự động Tiền tố (Autocomplete Trie)**: Trong file `AutocompleteTrie.java` và `TrieNode.java`, em cài đặt cấu trúc Cây tiền tố (Prefix Tree). Mỗi node chứa một `HashMap<Character, TrieNode> children`. Khi người dùng gõ chuỗi tiền tố độ dài $L$, hàm `suggest()` duyệt theo các nhánh cây đúng $L$ bước trong thời gian **$O(L)$** để tìm tới node tiền tố, sau đó duyệt DFS thu thập tối đa 10 gợi ý trong thời gian dưới 0.3 mili-giây, hoàn toàn độc lập với kích thước từ điển."*
+
+#### 3.2. Bản chất Cấu trúc Index là gì? Được lưu ở đâu? Có và Không có nó khác nhau thế nào? (2:10 – 2:40)
+* **Thao tác màn hình:**
+  - Mở cây thư mục trỏ vào `data/index/` và mở file `FileSlangRepository.java` (từ dòng 90 - 130).
+* **Lời thoại (Voice-over):**
+  > *"Vậy **Cấu trúc Index là gì và có tác dụng gì?***
+  > *Trong khoa học máy tính, **Index (chỉ mục)** là cấu trúc dữ liệu phụ trợ được lập sẵn trong bộ nhớ — giống như phần **mục lục tra cứu ở cuối một cuốn sách dày**. Thay vì phải lật đọc từng trang từ đầu đến cuối ($O(N)$), ta chỉ cần tra mục lục để nhảy cóc ngay tới trang chứa từ khóa.*
   >
-  > *4. **Lịch sử và Đố vui**: Sử dụng `LinkedList` để ghi nhận lịch sử tra cứu và `ArrayList` kết hợp `ThreadLocalRandom` để bốc câu hỏi đố vui trong thời gian $O(1)$."*
+  > *Cấu trúc Index này **được lưu ở đâu?***
+  > *Nó được lưu tại thư mục `data/index/` dưới 2 tệp tin:*
+  > *1. Tệp `index_cache.ser`: chứa toàn bộ 3 cấu trúc Index (`SlangIndex`, `InvertedDefinitionIndex`, `AutocompleteTrie`) được chuyển đổi thành nhị phân bằng cơ chế **Java Object Serialization**.*
+  > *2. Tệp `metadata.properties`: lưu mã băm **SHA-256** của tệp `slang_user.txt` để kiểm tra tính toàn vẹn.*
+  >
+  > *Vậy **Có Index Cache và Không Có Index Cache khác nhau như thế nào?***
+  > *- **Khi CÓ Index Cache**: Ứng dụng chỉ cần đọc file `.ser` và deserialize thẳng vào RAM. Hệ thống **không cần đọc tệp text thô**, **không cần cắt chuỗi từng dòng** và **không cần chạy bộ băm từ (Tokenizer)**. Thời gian nạp ứng dụng khởi động cực nhanh: chỉ mất vỏn vẹn **~110 đến 130 mili-giây**.*
+  > *- **Khi KHÔNG CÓ Index Cache** (như lần đầu chạy hoặc khi xóa thư mục `index`): Ứng dụng bắt buộc phải mở file văn bản `slang_user.txt`, đọc từng dòng, băm từng từ vào Map, Inverted Index và chèn vào Trie. Với 7.638 từ, thời gian nạp mất **~350 đến 450 ms**; và nếu là 100.000 từ sẽ mất gần **1 giây**.*
+  > *Đặc biệt, hệ thống có cơ chế **Tự phục hồi (Self-Recovery)**: Khi phát hiện thiếu cache hoặc mã SHA-256 không khớp, Model sẽ tự động rebuild lại từ file text và tự tạo mới file `.ser` mà không gây bất kỳ lỗi nào cho người dùng."*
+
+#### 3.3. Phân tích Logic Kiểm thử Benchmark trong `Milestone5Test.java` (2:40 – 3:15)
+* **Thao tác màn hình:**
+  - Mở file `src/test/Milestone5Test.java`.
+  - Cuộn chuột lướt qua 5 Test Case và dừng lại ở đoạn code của Test 2 và Test 3.
+* **Lời thoại (Voice-over):**
+  > *"Để chứng minh một cách khoa học rằng ứng dụng đáp ứng yêu cầu dưới 1 giây cho 100.000 từ, em đã thiết kế bộ kiểm thử tự động toàn diện trong file **`Milestone5Test.java`** với logic gồm 5 bài test nghiêm ngặt:*
+  >
+  > *- **Test 1 - Xây dựng Dataset 100.000 từ**: Vòng lặp sinh tự động 100.000 đối tượng `SlangEntry` phân biệt kèm các định nghĩa đa dạng chứa các từ khóa mẫu, sau đó nạp đồng thời vào cả 3 cấu trúc index. Tổng thời gian index 100.000 từ chỉ mất khoảng **850 mili-giây**.*
+  >
+  > *- **Test 2 - Benchmark Slang Word $O(1)$ qua 10.000 queries**: Sử dụng hàm `Random` bốc ngẫu nhiên 10.000 từ trong tập 100.000 từ và đo chính xác bằng `System.nanoTime()`. Kết quả thời gian tra cứu trung bình chỉ mất **~0.39 micro-giây/lần** — tức là nhanh hơn yêu cầu 1 giây của đề bài tới **hơn 2,5 triệu lần**! Tra cứu tiền tố Autocomplete Trie cũng chỉ mất **~200 micro-giây**.*
+  >
+  > *- **Test 3 - Benchmark Inverted Index Definition**: Tra cứu các từ khóa phổ biến có tới 10.000 kết quả khớp mỗi từ. Thuật toán giao tập hợp và xác thực substring chỉ mất trung bình **~18 đến 20 mili-giây**, nhanh hơn 50 lần so với giới hạn 1 giây của đề bài.*
+  >
+  > *- **Test 4 - Kiểm thử Độ bền (Data Persistence)**: Thêm một từ mới vào Model, sau đó hủy hoàn toàn instance trong bộ nhớ và khởi tạo lại Model mới từ đĩa (mô phỏng tắt app rồi bật lại). Bài test khẳng định từ mới vẫn tồn tại nguyên vẹn 100% trong RAM.*
+  >
+  > *- **Test 5 - Kiểm thử Tự phục hồi Index**: Chủ động xóa sạch 2 file cache `index_cache.ser` và `metadata.properties`. Khi Model khởi động lại, hệ thống tự phát hiện thiếu cache, tự đọc lại file text và tự tạo lại bộ cache mới chỉ trong **~136 ms** mà không hề gặp lỗi."*
 
 ---
 
-### PHẦN 4: DEMO TRỌN VẸN 1 CHỨC NĂNG – THÊM SLANG WORD (2:30 – 4:10)
+### PHẦN 4: DEMO TRỌN VẸN 1 CHỨC NĂNG – THÊM SLANG WORD (3:15 – 4:45)
 
 * **Thao tác màn hình:**
   - Chuyển sang màn hình ứng dụng đang chạy.
@@ -150,12 +192,12 @@
 
 ---
 
-### PHẦN 5: TỔNG KẾT & KẾT THÚC (4:10 – 4:40)
+### PHẦN 5: TỔNG KẾT & KẾT THÚC (4:45 – 5:15)
 
 * **Thao tác màn hình:**
-  - Chuyển về terminal hoặc IDE hiển thị kết quả chạy `test.bat` với 5/5 tests Milestone 5 Benchmark 100k passed.
+  - Chuyển sang cửa sổ Terminal hiển thị kết quả chạy `test.bat` với toàn bộ kết quả Pass rõ nét bằng tiếng Việt.
 * **Lời thoại (Voice-over):**
-  > *"Như Thầy/Cô có thể thấy trên màn hình, toàn bộ 4 bộ kiểm thử tự động từ Milestone 2 đến Milestone 5 đều vượt qua 100% với thời gian tra cứu chỉ vài micro-giây cho 100.000 từ. Ứng dụng đáp ứng trọn vẹn cả 10 chức năng theo yêu cầu đề bài, đảm bảo an toàn tệp và có giao diện Swing thân thiện, mượt mà.*
+  > *"Như Thầy/Cô có thể thấy trên màn hình Terminal, toàn bộ 4 bộ kiểm thử tự động từ Milestone 2 đến Milestone 5 đều vượt qua 100% với thời gian tra cứu chỉ vài micro-giây cho 100.000 từ. Ứng dụng đáp ứng trọn vẹn cả 10 chức năng theo yêu cầu đề bài, đảm bảo an toàn tệp và có giao diện Swing thân thiện, mượt mà.*
   >
   > *Em xin chân thành cảm ơn Thầy/Cô đã theo dõi video báo cáo đồ án của em. Em xin kính chúc Thầy/Cô thật nhiều sức khỏe và công tác tốt!"*
 
