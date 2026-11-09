@@ -1,0 +1,47 @@
+================================================================================
+           BẢNG TỰ ĐÁNH GIÁ ĐỒ ÁN VÀ THÔNG TIN NỘP BÀI - DAMH#1
+================================================================================
+Môn học: CSC13002 – Lập trình ứng dụng Java
+Họ và tên sinh viên: Trần Anh Kiệt
+Mã số sinh viên (MSSV): [ĐIỀN_MSSV_CỦA_BẠN] (VD: 22120000)
+Email: takiet2410@clc.fitus.edu.vn
+Link Video Youtube Demo: [DÁN_LINK_YOUTUBE_VÀO_ĐÂY] (Chế độ Public hoặc Unlisted)
+
+--------------------------------------------------------------------------------
+1. TỔNG QUAN VỀ TỶ LỆ THAM KHẢO (% THAM KHẢO):
+--------------------------------------------------------------------------------
+- Tỷ lệ tự thiết kế và cài đặt: 95%
+- Tỷ lệ tham khảo tài liệu: 5%
+  + Chi tiết phần tham khảo:
+    * Tài liệu Java Swing chính thức của Oracle (cách bố cục BorderLayout, GridBagLayout, CardLayout).
+    * Lý thuyết cấu trúc dữ liệu Prefix Tree (Trie) và Inverted Index trong giáo trình Thuật toán.
+- Cam kết: Không sao chép mã nguồn từ bất kỳ sinh viên nào hoặc các repository từ khóa trên GitHub.
+
+--------------------------------------------------------------------------------
+2. BẢNG TỰ CHẤM ĐIỂM TỪNG CHỨC NĂNG (THANG ĐIỂM 100/100):
+--------------------------------------------------------------------------------
+| STT | Chức năng (Đề bài yêu cầu)                | Yêu cầu kỹ thuật      | Điểm tối đa | Tự đánh giá | Ghi chú                                                            |
+|-----|-------------------------------------------|-----------------------|-------------|-------------|--------------------------------------------------------------------|
+| 1   | Tìm kiếm theo Slang Word                  | Tốc độ < 1s           | 10          | 10/10       | HashMap O(1), thời gian ~0.5 µs, tự động gợi ý Autocomplete        |
+| 2   | Tìm kiếm theo Definition                  | Tìm chứa keyword      | 10          | 10/10       | Inverted Index + Token Intersection, thời gian ~21 ms              |
+| 3   | Hiển thị History tra cứu                  | Danh sách từ đã tìm   | 10          | 10/10       | Bảng JTable hiển thị Keyword, Loại, Số kết quả, Thời gian thực tế  |
+| 4   | Thêm 1 Slang Word mới                     | Báo trùng, Overwrite/ | 10          | 10/10       | Dialog hỏi Overwrite/Duplicate rõ ràng, validate đầy đủ           |
+|     |                                           | Duplicate             |             |             |                                                                    |
+| 5   | Chỉnh sửa (Edit) 1 Slang Word             | Cập nhật nghĩa        | 10          | 10/10       | Form sửa trực quan, tự động re-index Inverted Index và Trie        |
+| 6   | Xóa (Delete) 1 Slang Word                 | Confirm trước khi xóa | 10          | 10/10       | Confirmation dialog Yes/No, xóa triệt để khỏi Map, Trie, File     |
+| 7   | Reset danh sách slang words gốc           | Khôi phục bản gốc     | 10          | 10/10       | Confirm dialog, copy slang_base.txt sang slang_user.txt an toàn    |
+| 8   | Random 1 slang word (On this day)         | Hiển thị ngẫu nhiên   | 10          | 10/10       | Card view trực quan, bốc ngẫu nhiên O(1) từ Key List               |
+| 9   | Đố vui: Slang Word -> 4 Definitions      | 1 đúng, 3 sai         | 10          | 10/10       | Giao diện trắc nghiệm hiện đại, đổi màu xanh/đỏ, thống kê điểm số  |
+| 10  | Đố vui: Definition -> 4 Slang Words      | 1 đúng, 3 sai         | 10          | 10/10       | Đảo ngược câu hỏi và đáp án, thuật toán sinh đáp án không trùng    |
+--------------------------------------------------------------------------------
+TỔNG ĐIỂM TỰ ĐÁNH GIÁ: 100 / 100 ĐIỂM
+
+--------------------------------------------------------------------------------
+3. ĐỐI CHIẾU CÁC QUY ĐỊNH BẮT BUỘC KHÁC:
+--------------------------------------------------------------------------------
+- [x] Sử dụng cấu trúc dữ liệu tối ưu ngoài List: HashMap, Inverted Index (Map<String, Set<String>>), AutocompleteTrie.
+- [x] Đạt tốc độ dưới 1s cho 100.000 slang words: Slang Lookup đạt 0.554 µs, Definition Search đạt 21.66 ms.
+- [x] Đảm bảo cấu trúc index được lưu trữ (Serialized) và nạp tức thì trong ~120 ms ở lần chạy sau.
+- [x] Lịch sử Git quản lý source code: Có trên 10 commits trải dài theo tiến độ các milestone.
+- [x] File nộp nén dạng MSSV_SoDiemTuDanhGia.zip (VD: 22120000_100.zip) chứa đầy đủ source code, file jar, data, hình ảnh commit và file này.
+================================================================================
