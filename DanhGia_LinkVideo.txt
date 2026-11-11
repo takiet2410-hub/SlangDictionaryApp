@@ -3,9 +3,9 @@
 ================================================================================
 Môn học: CSC13002 – Lập trình ứng dụng Java
 Họ và tên sinh viên: Trần Anh Kiệt
-Mã số sinh viên (MSSV): [ĐIỀN_MSSV_CỦA_BẠN] (VD: 22120000)
+Mã số sinh viên (MSSV): 24127287
 Email: takiet2410@clc.fitus.edu.vn
-Link Video Youtube Demo: [DÁN_LINK_YOUTUBE_VÀO_ĐÂY] (Chế độ Public hoặc Unlisted)
+Link Video Youtube Demo: https://youtu.be/dkHyutyoJrc?si=tYbALYuoVPGJSTP0
 
 --------------------------------------------------------------------------------
 1. TỔNG QUAN VỀ TỶ LỆ THAM KHẢO (% THAM KHẢO):
@@ -43,5 +43,5 @@ TỔNG ĐIỂM TỰ ĐÁNH GIÁ: 100 / 100 ĐIỂM
 - [x] Đạt tốc độ dưới 1s cho 100.000 slang words: Slang Lookup đạt 0.554 µs, Definition Search đạt 21.66 ms.
 - [x] Đảm bảo cấu trúc index được lưu trữ (Serialized) và nạp tức thì trong ~120 ms ở lần chạy sau.
 - [x] Lịch sử Git quản lý source code: Có trên 10 commits trải dài theo tiến độ các milestone.
-- [x] File nộp nén dạng MSSV_SoDiemTuDanhGia.zip (VD: 22120000_100.zip) chứa đầy đủ source code, file jar, data, hình ảnh commit và file này.
+- [x] File nộp nén dạng MSSV_SoDiemTuDanhGia.zip (VD: 24127287_100.zip) chứa đầy đủ source code, file jar, data, hình ảnh commit và file này.
 ================================================================================
